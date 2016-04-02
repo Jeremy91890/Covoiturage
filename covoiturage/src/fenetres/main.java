@@ -38,6 +38,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -390,883 +393,883 @@ public class main<conn> extends JFrame {
 			}
 		});
 		toolBar.add(mntmRechercherUnTrajet);
-			Bienvenue.setLayout(null);
-			Bienvenue.add(labelUtilisateur);
-			Bienvenue.add(deconnexion);
-			Bienvenue.add(toolBar);
-					
-					
-					//_______________________________Panel MesVehicules--------------------------
-						
-					MesVehicules = new JPanel();
-					MesVehicules.setBounds(6, 65, 749, 417);
+		Bienvenue.setLayout(null);
+		Bienvenue.add(labelUtilisateur);
+		Bienvenue.add(deconnexion);
+		Bienvenue.add(toolBar);
+		
+		
+		//_______________________________Panel MesVehicules--------------------------
+			
+		MesVehicules = new JPanel();
+		MesVehicules.setBounds(6, 65, 749, 417);
+		MesVehicules.setVisible(false);
+		MesVehicules.setBackground(Color.WHITE);
+		MesVehicules.setLayout(null);
+		
+		
+		JLabel lblVehicules = new JLabel("Véhicule n°" +1);
+		lblVehicules.setBounds(314, 6, 142, 16);
+		MesVehicules.add(lblVehicules);
+		
+			JLabel lblMesVehiculeMarque = new JLabel("Marque");
+			lblMesVehiculeMarque.setBounds(246, 55, 61, 16);
+			MesVehicules.add(lblMesVehiculeMarque);
+			
+			MesVehiculesMarque = new JTextField();
+			MesVehiculesMarque.setBounds(368, 49, 134, 28);
+			MesVehicules.add(MesVehiculesMarque);
+			MesVehiculesMarque.setColumns(10);
+			
+			JLabel lblMesVehiculeModele = new JLabel("Modele");
+			lblMesVehiculeModele.setBounds(246, 95, 61, 16);
+			MesVehicules.add(lblMesVehiculeModele);
+			
+			MesVehiculesModele = new JTextField();
+			MesVehiculesModele.setBounds(368, 89, 134, 28);
+			MesVehicules.add(MesVehiculesModele);
+			MesVehiculesModele.setColumns(10);
+			
+			JLabel lblMesVehiculesAnnee = new JLabel("Année");
+			lblMesVehiculesAnnee.setBounds(246, 135, 61, 16);
+			MesVehicules.add(lblMesVehiculesAnnee);
+			
+			MesVehiculesAnnee = new JTextField();
+			MesVehiculesAnnee.setBounds(368, 129, 134, 28);
+			MesVehicules.add(MesVehiculesAnnee);
+			MesVehiculesAnnee.setColumns(10);
+			
+			MesVehiculesCategorie = new JTextField();
+			MesVehiculesCategorie.setBounds(368, 169, 134, 28);
+			MesVehicules.add(MesVehiculesCategorie);
+			MesVehiculesCategorie.setColumns(10);
+			
+			JLabel lblMesVehiculesCategorie = new JLabel("Categorie");
+			lblMesVehiculesCategorie.setBounds(246, 175, 61, 16);
+			MesVehicules.add(lblMesVehiculesCategorie);
+			
+			MesVehiculesMotorisation = new JTextField();
+			MesVehiculesMotorisation.setBounds(368, 209, 134, 28);
+			MesVehicules.add(MesVehiculesMotorisation);
+			MesVehiculesMotorisation.setColumns(10);
+			
+			JLabel lblMotorisation_2 = new JLabel("Motorisation");
+			lblMotorisation_2.setBounds(227, 215, 80, 16);
+			MesVehicules.add(lblMotorisation_2);
+			
+			MesVehiculesPuissance = new JTextField();
+			MesVehiculesPuissance.setBounds(368, 249, 134, 28);
+			MesVehicules.add(MesVehiculesPuissance);
+			MesVehiculesPuissance.setColumns(10);
+			
+			JLabel lblMesVehiculesPuissance = new JLabel("Puissance");
+			lblMesVehiculesPuissance.setBounds(237, 255, 70, 16);
+			MesVehicules.add(lblMesVehiculesPuissance);
+			
+			JButton btnAnnuler = new JButton("Annuler");
+			btnAnnuler.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					afficherVehicule(1);
+				}
+			});
+			btnAnnuler.setBounds(142, 314, 117, 29);
+			MesVehicules.add(btnAnnuler);
+			
+			JButton MesVehiculesModifier = new JButton("Modifier");
+			MesVehiculesModifier.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					modifierVehicule(vehiculeCourant);
+				}
+			});
+			MesVehiculesModifier.setBounds(326, 314, 117, 29);
+			MesVehicules.add(MesVehiculesModifier);
+			
+			JButton MesVehiculesSupprimer = new JButton("Supprimer");
+			MesVehiculesSupprimer.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					supprimerVehicule(vehiculeCourant);
 					MesVehicules.setVisible(false);
-					MesVehicules.setBackground(Color.WHITE);
-					MesVehicules.setLayout(null);
-					
-					
-					JLabel lblVehicules = new JLabel("Véhicule n°" +1);
-					lblVehicules.setBounds(314, 6, 142, 16);
-					MesVehicules.add(lblVehicules);
-					
-						JLabel lblMesVehiculeMarque = new JLabel("Marque");
-						lblMesVehiculeMarque.setBounds(246, 55, 61, 16);
-						MesVehicules.add(lblMesVehiculeMarque);
-						
-						MesVehiculesMarque = new JTextField();
-						MesVehiculesMarque.setBounds(368, 49, 134, 28);
-						MesVehicules.add(MesVehiculesMarque);
-						MesVehiculesMarque.setColumns(10);
-						
-						JLabel lblMesVehiculeModele = new JLabel("Modele");
-						lblMesVehiculeModele.setBounds(246, 95, 61, 16);
-						MesVehicules.add(lblMesVehiculeModele);
-						
-						MesVehiculesModele = new JTextField();
-						MesVehiculesModele.setBounds(368, 89, 134, 28);
-						MesVehicules.add(MesVehiculesModele);
-						MesVehiculesModele.setColumns(10);
-						
-						JLabel lblMesVehiculesAnnee = new JLabel("Année");
-						lblMesVehiculesAnnee.setBounds(246, 135, 61, 16);
-						MesVehicules.add(lblMesVehiculesAnnee);
-						
-						MesVehiculesAnnee = new JTextField();
-						MesVehiculesAnnee.setBounds(368, 129, 134, 28);
-						MesVehicules.add(MesVehiculesAnnee);
-						MesVehiculesAnnee.setColumns(10);
-						
-						MesVehiculesCategorie = new JTextField();
-						MesVehiculesCategorie.setBounds(368, 169, 134, 28);
-						MesVehicules.add(MesVehiculesCategorie);
-						MesVehiculesCategorie.setColumns(10);
-						
-						JLabel lblMesVehiculesCategorie = new JLabel("Categorie");
-						lblMesVehiculesCategorie.setBounds(246, 175, 61, 16);
-						MesVehicules.add(lblMesVehiculesCategorie);
-						
-						MesVehiculesMotorisation = new JTextField();
-						MesVehiculesMotorisation.setBounds(368, 209, 134, 28);
-						MesVehicules.add(MesVehiculesMotorisation);
-						MesVehiculesMotorisation.setColumns(10);
-						
-						JLabel lblMotorisation_2 = new JLabel("Motorisation");
-						lblMotorisation_2.setBounds(227, 215, 80, 16);
-						MesVehicules.add(lblMotorisation_2);
-						
-						MesVehiculesPuissance = new JTextField();
-						MesVehiculesPuissance.setBounds(368, 249, 134, 28);
-						MesVehicules.add(MesVehiculesPuissance);
-						MesVehiculesPuissance.setColumns(10);
-						
-						JLabel lblMesVehiculesPuissance = new JLabel("Puissance");
-						lblMesVehiculesPuissance.setBounds(237, 255, 70, 16);
-						MesVehicules.add(lblMesVehiculesPuissance);
-						
-						JButton btnAnnuler = new JButton("Annuler");
-						btnAnnuler.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								afficherVehicule(1);
-							}
-						});
-						btnAnnuler.setBounds(142, 314, 117, 29);
-						MesVehicules.add(btnAnnuler);
-						
-						JButton MesVehiculesModifier = new JButton("Modifier");
-						MesVehiculesModifier.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								modifierVehicule(vehiculeCourant);
-							}
-						});
-						MesVehiculesModifier.setBounds(326, 314, 117, 29);
-						MesVehicules.add(MesVehiculesModifier);
-						
-						JButton MesVehiculesSupprimer = new JButton("Supprimer");
-						MesVehiculesSupprimer.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								supprimerVehicule(vehiculeCourant);
-								MesVehicules.setVisible(false);
-							}
-						});
-						MesVehiculesSupprimer.setBounds(503, 314, 117, 29);
-						MesVehicules.add(MesVehiculesSupprimer);
-						
-						JButton MesVehiculesAjouter = new JButton("Ajouter un véhicule");
-						MesVehiculesAjouter.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								ajouterVehicule();
-							}
-						});
-						MesVehiculesAjouter.setBounds(23, 6, 154, 29);
-						MesVehicules.add(MesVehiculesAjouter);
-						
-						JButton btnSuivant = new JButton("");
-						btnSuivant.setIcon(new ImageIcon(main.class.getResource("/fenetres/suivant.png")));
-						btnSuivant.setBorder(null);
-						btnSuivant.setBorderPainted(false);
-						btnSuivant.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								//fonction qui compte les véhicules, ou alors arrayList de véhicule
-								int nbVehicule = compterVehicule();
-								compteurVehicule ++;
-								if (compteurVehicule <= nbVehicule){
-									afficherVehicule(compteurVehicule);	
-									lblVehicules.setText("Véhicule n°" + compteurVehicule);
-								}
-								else {
-									JOptionPane.showMessageDialog(null, "Il n'y a pas de véhicule suivant");
-									//lblVehicules.setText("Véhicule n°" + compteurVehicule);
-									compteurVehicule --;
-								}
-							}
-						});
-						btnSuivant.setBounds(556, 135, 117, 37);
-						MesVehicules.add(btnSuivant);
-						
-						JButton btnPrcdent = new JButton("");
-						btnPrcdent.setBorderPainted(false);
-						btnPrcdent.setBorder(null);
-						btnPrcdent.setIcon(new ImageIcon(main.class.getResource("/fenetres/precedent.png")));
-						btnPrcdent.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								int nbVehicule = compterVehicule();
-								compteurVehicule --;
-								if (compteurVehicule > 0){
-									lblVehicules.setText("Véhicule n°" + compteurVehicule);
-									afficherVehicule(compteurVehicule);
-								}
-								else {
-									JOptionPane.showMessageDialog(null, "Il n'y a pas de véhicule précédent");
-									compteurVehicule ++;
-									lblVehicules.setText("Véhicule n°" + compteurVehicule);
-								}
-							}
-						});
-							
-							//-------------------------------Panel MesPermis-----------------------------------
-							MesPermis = new JPanel();
-							MesPermis.setBounds(6, 65, 749, 417);
-							MesPermis.setVisible(false);
-							MesPermis.setLayout(null);
-							
-							JLabel lblListeDeVos = new JLabel("Liste de vos permis avec leur définition");
-							lblListeDeVos.setBounds(251, 5, 247, 16);
-							MesPermis.add(lblListeDeVos);
-							
-							MesPermisPermisA = new JCheckBox("Permis A");
-							MesPermisPermisA.setBounds(69, 57, 88, 23);
-							MesPermis.add(MesPermisPermisA);
-							
-							MesPermisPermisB = new JCheckBox("Permis B");
-							MesPermisPermisB.setBounds(69, 128, 88, 23);
-							MesPermis.add(MesPermisPermisB);
-							
-							MesPermisPermisC = new JCheckBox("Permis C");
-							MesPermisPermisC.setBounds(69, 204, 88, 23);
-							MesPermis.add(MesPermisPermisC);
-							
-							MesPermisPermisD = new JCheckBox("Permis D");
-							MesPermisPermisD.setBounds(69, 274, 88, 23);
-							MesPermis.add(MesPermisPermisD);
-							
-							JLabel lblLePermisA = new JLabel("Le permis A permet de conduire toutes les motos avec ou sans side-car");
-							lblLePermisA.setBounds(199, 57, 528, 23);
-							MesPermis.add(lblLePermisA);
-							
-							JLabel lblNewLabel_1 = new JLabel("et tous les 3 roues à moteur quelle que soit leur puissance.");
-							lblNewLabel_1.setBounds(199, 79, 419, 16);
-							MesPermis.add(lblNewLabel_1);
-							
-							JLabel lblLePermisB = new JLabel("Le permis B permet la conduite des véhicules dont le PTAC \n");
-							lblLePermisB.setBounds(199, 132, 528, 16);
-							MesPermis.add(lblLePermisB);
-							
-							JLabel lblNewLabel_2 = new JLabel("(poids total autorisé en charge) est inférieur ou égal à 3,5 tonnes.");
-							lblNewLabel_2.setBounds(199, 149, 430, 16);
-							MesPermis.add(lblNewLabel_2);
-							
-							JLabel lblNewLabel_3 = new JLabel("Le permis C autorise la conduite des véhicules affectés au transport de ");
-							lblNewLabel_3.setBounds(199, 204, 459, 16);
-							MesPermis.add(lblNewLabel_3);
-							
-							JLabel lblMarchandisesOuDe = new JLabel("marchandises ou de matériel dont le PTAC est supérieur à 7,5 tonnes.");
-							lblMarchandisesOuDe.setBounds(199, 221, 459, 16);
-							MesPermis.add(lblMarchandisesOuDe);
-							
-							JLabel lblLePermisD = new JLabel("Le permis D autorise la conduite des véhicules affectés au transport de");
-							lblLePermisD.setBounds(199, 278, 459, 16);
-							MesPermis.add(lblLePermisD);
-							
-							JLabel lblComportantPlusDe = new JLabel("comportant plus de 8 places assises outre le siège du conducteur.");
-							lblComportantPlusDe.setBounds(199, 295, 459, 16);
-							MesPermis.add(lblComportantPlusDe);
-							
-							JButton btnActualiserPermis = new JButton("Actualiser");
-							btnActualiserPermis.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent e) {
-									actualiserPermis();
-								}
-							});
-							
-							//______________________________Panel MesInformations-----------------------
-							MesInformations = new JPanel();
-							MesInformations.setBounds(6, 65, 749, 417);
-							MesInformations.setBackground(new Color(0, 191, 255));
-							MesInformations.setVisible(false);
-							MesInformations.setLayout(null);
-							
+				}
+			});
+			MesVehiculesSupprimer.setBounds(503, 314, 117, 29);
+			MesVehicules.add(MesVehiculesSupprimer);
+			
+			JButton MesVehiculesAjouter = new JButton("Ajouter un véhicule");
+			MesVehiculesAjouter.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ajouterVehicule();
+				}
+			});
+			MesVehiculesAjouter.setBounds(23, 6, 154, 29);
+			MesVehicules.add(MesVehiculesAjouter);
+			
+			JButton btnSuivant = new JButton("");
+			btnSuivant.setIcon(new ImageIcon(main.class.getResource("/fenetres/suivant.png")));
+			btnSuivant.setBorder(null);
+			btnSuivant.setBorderPainted(false);
+			btnSuivant.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//fonction qui compte les véhicules, ou alors arrayList de véhicule
+					int nbVehicule = compterVehicule();
+					compteurVehicule ++;
+					if (compteurVehicule <= nbVehicule){
+						afficherVehicule(compteurVehicule);	
+						lblVehicules.setText("Véhicule n°" + compteurVehicule);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Il n'y a pas de véhicule suivant");
+						//lblVehicules.setText("Véhicule n°" + compteurVehicule);
+						compteurVehicule --;
+					}
+				}
+			});
+			btnSuivant.setBounds(556, 135, 117, 37);
+			MesVehicules.add(btnSuivant);
+			
+			JButton btnPrcdent = new JButton("");
+			btnPrcdent.setBorderPainted(false);
+			btnPrcdent.setBorder(null);
+			btnPrcdent.setIcon(new ImageIcon(main.class.getResource("/fenetres/precedent.png")));
+			btnPrcdent.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int nbVehicule = compterVehicule();
+					compteurVehicule --;
+					if (compteurVehicule > 0){
+						lblVehicules.setText("Véhicule n°" + compteurVehicule);
+						afficherVehicule(compteurVehicule);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Il n'y a pas de véhicule précédent");
+						compteurVehicule ++;
+						lblVehicules.setText("Véhicule n°" + compteurVehicule);
+					}
+				}
+			});
+			
+			//-------------------------------Panel MesPermis-----------------------------------
+			MesPermis = new JPanel();
+			MesPermis.setBounds(6, 65, 749, 417);
+			MesPermis.setVisible(false);
+			MesPermis.setLayout(null);
+			
+			JLabel lblListeDeVos = new JLabel("Liste de vos permis avec leur définition");
+			lblListeDeVos.setBounds(251, 5, 247, 16);
+			MesPermis.add(lblListeDeVos);
+			
+			MesPermisPermisA = new JCheckBox("Permis A");
+			MesPermisPermisA.setBounds(69, 57, 88, 23);
+			MesPermis.add(MesPermisPermisA);
+			
+			MesPermisPermisB = new JCheckBox("Permis B");
+			MesPermisPermisB.setBounds(69, 128, 88, 23);
+			MesPermis.add(MesPermisPermisB);
+			
+			MesPermisPermisC = new JCheckBox("Permis C");
+			MesPermisPermisC.setBounds(69, 204, 88, 23);
+			MesPermis.add(MesPermisPermisC);
+			
+			MesPermisPermisD = new JCheckBox("Permis D");
+			MesPermisPermisD.setBounds(69, 274, 88, 23);
+			MesPermis.add(MesPermisPermisD);
+			
+			JLabel lblLePermisA = new JLabel("Le permis A permet de conduire toutes les motos avec ou sans side-car");
+			lblLePermisA.setBounds(199, 57, 528, 23);
+			MesPermis.add(lblLePermisA);
+			
+			JLabel lblNewLabel_1 = new JLabel("et tous les 3 roues à moteur quelle que soit leur puissance.");
+			lblNewLabel_1.setBounds(199, 79, 419, 16);
+			MesPermis.add(lblNewLabel_1);
+			
+			JLabel lblLePermisB = new JLabel("Le permis B permet la conduite des véhicules dont le PTAC \n");
+			lblLePermisB.setBounds(199, 132, 528, 16);
+			MesPermis.add(lblLePermisB);
+			
+			JLabel lblNewLabel_2 = new JLabel("(poids total autorisé en charge) est inférieur ou égal à 3,5 tonnes.");
+			lblNewLabel_2.setBounds(199, 149, 430, 16);
+			MesPermis.add(lblNewLabel_2);
+			
+			JLabel lblNewLabel_3 = new JLabel("Le permis C autorise la conduite des véhicules affectés au transport de ");
+			lblNewLabel_3.setBounds(199, 204, 459, 16);
+			MesPermis.add(lblNewLabel_3);
+			
+			JLabel lblMarchandisesOuDe = new JLabel("marchandises ou de matériel dont le PTAC est supérieur à 7,5 tonnes.");
+			lblMarchandisesOuDe.setBounds(199, 221, 459, 16);
+			MesPermis.add(lblMarchandisesOuDe);
+			
+			JLabel lblLePermisD = new JLabel("Le permis D autorise la conduite des véhicules affectés au transport de");
+			lblLePermisD.setBounds(199, 278, 459, 16);
+			MesPermis.add(lblLePermisD);
+			
+			JLabel lblComportantPlusDe = new JLabel("comportant plus de 8 places assises outre le siège du conducteur.");
+			lblComportantPlusDe.setBounds(199, 295, 459, 16);
+			MesPermis.add(lblComportantPlusDe);
+			
+			JButton btnActualiserPermis = new JButton("Actualiser");
+			btnActualiserPermis.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actualiserPermis();
+				}
+			});
+			
+			//______________________________Panel MesInformations-----------------------
+			MesInformations = new JPanel();
+			MesInformations.setBounds(6, 65, 749, 417);
+			MesInformations.setBackground(new Color(0, 191, 255));
+			MesInformations.setVisible(false);
+			MesInformations.setLayout(null);
+			
 	
-								JLabel lblMesInformations = new JLabel("Mes Informations");
-								lblMesInformations.setBounds(319, 5, 110, 16);
-								MesInformations.add(lblMesInformations);
-								
-								JLabel lblNewLabel = new JLabel("Pseudo :");
-								lblNewLabel.setBounds(208, 50, 57, 14);
-								MesInformations.add(lblNewLabel);
-								
-								MesInfosPseudo = new JTextField();
-								MesInfosPseudo.setBounds(319, 47, 123, 20);
-								MesInfosPseudo.setEnabled(false);
-								MesInformations.add(MesInfosPseudo);
-								MesInfosPseudo.setColumns(10);
-								
-								JLabel lblMotDePass = new JLabel("Mot de passe :");
-								lblMotDePass.setBounds(171, 75, 94, 14);
-								MesInformations.add(lblMotDePass);
-								
-								MesInfosMdp = new JTextField();
-								MesInfosMdp.setBounds(319, 72, 123, 20);
-								MesInformations.add(MesInfosMdp);
-								MesInfosMdp.setColumns(10);
-								
-								JLabel lblRpterMotDe = new JLabel("Répéter mot de passe :");
-								lblRpterMotDe.setBounds(120, 100, 145, 14);
-								MesInformations.add(lblRpterMotDe);
-								
-								MesInfosRepeterMdp = new JTextField();
-								MesInfosRepeterMdp.setBounds(319, 97, 123, 20);
-								MesInformations.add(MesInfosRepeterMdp);
-								MesInfosRepeterMdp.setColumns(10);
-								
-								JLabel lblNom = new JLabel("Nom :");
-								lblNom.setBounds(208, 154, 46, 14);
-								MesInformations.add(lblNom);
-								
-								MesInfosNom = new JTextField();
-								MesInfosNom.setBounds(319, 151, 123, 20);
-								MesInformations.add(MesInfosNom);
-								MesInfosNom.setColumns(10);
-								
-								JLabel lblPrenom = new JLabel("Prenom :");
-								lblPrenom.setBounds(197, 178, 68, 14);
-								MesInformations.add(lblPrenom);
-								
-								MesInfosPrenom = new JTextField();
-								MesInfosPrenom.setBounds(319, 175, 123, 20);
-								MesInformations.add(MesInfosPrenom);
-								MesInfosPrenom.setColumns(10);
-								
-								MesInfosDateNaissance = new JTextField();
-								MesInfosDateNaissance.setBounds(319, 200, 123, 20);
-								MesInformations.add(MesInfosDateNaissance);
-								MesInfosDateNaissance.setColumns(10);
-								
-								JLabel lblDateDeNaissance = new JLabel("Date de naissance :");
-								lblDateDeNaissance.setBounds(144, 203, 122, 14);
-								MesInformations.add(lblDateDeNaissance);
-								
-								JLabel lblAdresse = new JLabel("Adresse :");
-								lblAdresse.setBounds(17, 228, 68, 14);
-								MesInformations.add(lblAdresse);
-								
-								MesInfosAdresse = new JTextField();
-								MesInfosAdresse.setBounds(84, 225, 134, 20);
-								MesInformations.add(MesInfosAdresse);
-								MesInfosAdresse.setColumns(10);
-								
-								JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone :");
-								lblTlphone.setBounds(182, 253, 83, 14);
-								MesInformations.add(lblTlphone);
-								
-								MesInfosTelephone = new JTextField();
-								MesInfosTelephone.setBounds(319, 250, 123, 20);
-								MesInformations.add(MesInfosTelephone);
-								MesInfosTelephone.setColumns(10);
-								
-								JLabel lblMail = new JLabel("Mail :");
-								lblMail.setBounds(208, 278, 57, 14);
-								MesInformations.add(lblMail);
-								
-								MesInfosMail = new JTextField();
-								MesInfosMail.setBounds(318, 275, 124, 20);
-								MesInformations.add(MesInfosMail);
-								MesInfosMail.setColumns(10);
-								
-								JButton btnModifier_1 = new JButton("Modifier");
-								btnModifier_1.setBounds(144, 326, 89, 23);
-								btnModifier_1.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										modifierInformations();
-									}
-								});
-								MesInformations.add(btnModifier_1);
-								
-								JButton btnAnnuler_1 = new JButton("Annuler");
-								btnAnnuler_1.setBounds(290, 326, 89, 23);
-								btnAnnuler_1.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										afficherInformations();
-									}
-								});
-								MesInformations.add(btnAnnuler_1);
-								
-								JButton btnSuppimerLeCompte = new JButton("Suppimer le compte");
-								btnSuppimerLeCompte.setBounds(428, 326, 145, 23);
-								btnSuppimerLeCompte.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										supprimerInformations();
-									}
-								});
-								
-								RechercherTrajet = new JPanel();
-								RechercherTrajet.setBounds(6, 65, 737, 417);
-								RechercherTrajet.setVisible(false);
-								RechercherTrajet.setLayout(null);
-								
-								JLabel lblCpVilleDe = new JLabel("CP ville de départ :");
-								lblCpVilleDe.setBounds(68, 30, 117, 16);
-								RechercherTrajet.add(lblCpVilleDe);
-								
-								rechercherCPVilleDepart = new JTextField();
-								rechercherCPVilleDepart.setText("91890");
-								rechercherCPVilleDepart.setBounds(197, 25, 130, 26);
-								RechercherTrajet.add(rechercherCPVilleDepart);
-								rechercherCPVilleDepart.setColumns(10);
-								rechercherCPVilleDepart.addKeyListener(new KeyAdapter() {
-									@Override
-									public void keyReleased(KeyEvent arg0) {
-										Rechercher_dynamique_ville_depart_nom(rechercherCPVilleDepart.getText()+"%");
-									}
-								});
-								
-								JLabel lblNewLabel_9 = new JLabel("CP ville d'arrivée :");
-								lblNewLabel_9.setBounds(68, 78, 117, 16);
-								RechercherTrajet.add(lblNewLabel_9);
-								
-								rechercherCPVilleArrivee = new JTextField();
-								rechercherCPVilleArrivee.setText("91150");
-								rechercherCPVilleArrivee.setBounds(197, 73, 130, 26);
-								RechercherTrajet.add(rechercherCPVilleArrivee);
-								rechercherCPVilleArrivee.setColumns(10);
-								rechercherCPVilleArrivee.addKeyListener(new KeyAdapter() {
-									@Override
-									public void keyReleased(KeyEvent arg0) {
-										Rechercher_dynamique_ville_arrivee_nom(rechercherCPVilleArrivee.getText()+"%");
-									}
-								});
-								
-								JLabel lblVilleDarrive = new JLabel("Ville de départ :");
-								lblVilleDarrive.setBounds(376, 30, 101, 16);
-								RechercherTrajet.add(lblVilleDarrive);
-								
-								JLabel lblNewLabel_10 = new JLabel("Ville d'arrivée :");
-								lblNewLabel_10.setBounds(376, 78, 101, 16);
-								RechercherTrajet.add(lblNewLabel_10);
-								
-								rechercherNomVilleDepart = new JTextField();
-								rechercherNomVilleDepart.setBounds(489, 25, 130, 26);
-								RechercherTrajet.add(rechercherNomVilleDepart);
-								rechercherNomVilleDepart.setColumns(10);
-								
-								rechercherNomVilleDepart.addKeyListener(new KeyAdapter() {
-									@Override
-									public void keyReleased(KeyEvent arg0) {
-										Rechercher_dynamique_ville_depart_cp(rechercherNomVilleDepart.getText()+"%");
-									}
-								});
-								
-								rechercherNomVilleArrivee = new JTextField();
-								rechercherNomVilleArrivee.setBounds(489, 73, 130, 26);
-								RechercherTrajet.add(rechercherNomVilleArrivee);
-								rechercherNomVilleArrivee.setColumns(10);
-								rechercherNomVilleArrivee.addKeyListener(new KeyAdapter() {
-									@Override
-									public void keyReleased(KeyEvent arg0) {
-										Rechercher_dynamique_ville_arrivee_cp(rechercherNomVilleArrivee.getText()+"%");
-									}
-								});
-								
-								JLabel lblDate_1 = new JLabel("Date :");
-								lblDate_1.setBounds(283, 125, 44, 16);
-								RechercherTrajet.add(lblDate_1);
-								
-								rechercherDate = new JTextField();
-								rechercherDate.setText("2012-12-12");
-								rechercherDate.setBounds(336, 120, 130, 26);
-								RechercherTrajet.add(rechercherDate);
-								rechercherDate.setColumns(10);
-								
-								table_afficher_consult_cov = new JTable();
-								table_afficher_consult_cov.setBorder(new LineBorder(new Color(0, 0, 0)));
-								table_afficher_consult_cov.setModel(model_table_afficher_cov);
-								//table_afficher_consult_cov.setBounds(6, 199, 725, 116);
-								table_afficher_consult_cov.addMouseListener(new MouseAdapter() {
-									@Override
-									public void mouseClicked(MouseEvent evt) {
-										int row = table_afficher_consult_cov.getSelectedRow();
-										if (SwingUtilities.isLeftMouseButton(evt)){
-											//Afficher les information du conducteur sur le covoiturage sélectionné
-											trajetChoisi = (Integer)table_afficher_consult_cov.getModel().getValueAt(row, 0);
-											AfficherInfoConducteur((Integer) table_afficher_consult_cov.getModel().getValueAt(row, 0));
-										}
-									}
-								});
-								//RechercherTrajet.add(table_afficher_consult_cov);
-								
-								
-								JButton btnRechercher = new JButton("Rechercher");
-								btnRechercher.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										rechercherTrajet();
-									}
-								});
-									
-									
-									ProposerTrajet = new JPanel();
-									ProposerTrajet.setBounds(6, 65, 737, 433);
-									ProposerTrajet.setVisible(false);
-									ProposerTrajet.setLayout(null);
-									
-										JLabel lblCpVilleDpart = new JLabel("CP Ville Départ :");
-										lblCpVilleDpart.setBounds(81, 94, 101, 16);
-										ProposerTrajet.add(lblCpVilleDpart);
-										
-										CPVilleDepart = new JTextField();
-										CPVilleDepart.setBounds(194, 89, 130, 26);
-										ProposerTrajet.add(CPVilleDepart);
-										CPVilleDepart.setColumns(10);
-										CPVilleDepart.addKeyListener(new KeyAdapter() {
-											@Override
-											public void keyReleased(KeyEvent arg0) {
-												Rechercher_dynamique_ville_depart_nom_proposer(CPVilleDepart.getText()+"%");
-											}
-										});
-										
-										JLabel lblNomVilleDpart = new JLabel("Nom Ville départ :");
-										lblNomVilleDpart.setBounds(379, 140, 113, 16);
-										ProposerTrajet.add(lblNomVilleDpart);
-										
-										NomVilleDepart = new JTextField();
-										NomVilleDepart.setBounds(504, 135, 130, 26);
-										ProposerTrajet.add(NomVilleDepart);
-										NomVilleDepart.setColumns(10);
-										NomVilleDepart.addKeyListener(new KeyAdapter() {
-											@Override
-											public void keyReleased(KeyEvent arg0) {
-												Rechercher_dynamique_ville_depart_cp_proposer(NomVilleDepart.getText()+"%");
-											}
-										});
-										
-										JLabel lblNewLabel_7 = new JLabel("CP Ville Arrivee :");
-										lblNewLabel_7.setBounds(389, 94, 103, 16);
-										ProposerTrajet.add(lblNewLabel_7);
-										
-										CPVilleArrivee = new JTextField();
-										CPVilleArrivee.setBounds(504, 89, 130, 26);
-										ProposerTrajet.add(CPVilleArrivee);
-										CPVilleArrivee.setColumns(10);
-										CPVilleArrivee.addKeyListener(new KeyAdapter() {
-											@Override
-											public void keyReleased(KeyEvent arg0) {
-												Rechercher_dynamique_ville_arrivee_nom_proposer(CPVilleArrivee.getText()+"%");
-											}
-										});
-										
-										JLabel lblNomVilleArrive = new JLabel("Nom Ville Arrivée :");
-										lblNomVilleArrive.setBounds(65, 140, 117, 16);
-										ProposerTrajet.add(lblNomVilleArrive);
-										
-										NomVilleArrivee = new JTextField();
-										NomVilleArrivee.setBounds(194, 135, 130, 26);
-										ProposerTrajet.add(NomVilleArrivee);
-										NomVilleArrivee.setColumns(10);
-										NomVilleArrivee.addKeyListener(new KeyAdapter() {
-											@Override
-											public void keyReleased(KeyEvent arg0) {
-												Rechercher_dynamique_ville_arrivee_cp_proposer(NomVilleArrivee.getText()+"%");
-											}
-										});
-										
-										JLabel lblDate = new JLabel("Date :");
-										lblDate.setBounds(145, 196, 37, 16);
-										ProposerTrajet.add(lblDate);
-										
-										DateVoyage = new JTextField();
-										DateVoyage.setBounds(194, 191, 130, 26);
-										ProposerTrajet.add(DateVoyage);
-										DateVoyage.setColumns(10);
-										
-										JLabel lblDistance = new JLabel("Distance :");
-										lblDistance.setBounds(429, 196, 63, 16);
-										ProposerTrajet.add(lblDistance);
-										
-										DistanceVoyage = new JTextField();
-										DistanceVoyage.setBounds(504, 191, 130, 26);
-										ProposerTrajet.add(DistanceVoyage);
-										DistanceVoyage.setColumns(10);
-										
-										JLabel lblPlacesDisponibles = new JLabel("Places disponibles :");
-										lblPlacesDisponibles.setBounds(58, 234, 124, 16);
-										ProposerTrajet.add(lblPlacesDisponibles);
-										
-										PlaceDispo = new JTextField();
-										PlaceDispo.setBounds(194, 229, 130, 26);
-										ProposerTrajet.add(PlaceDispo);
-										PlaceDispo.setColumns(10);
-										
-										JLabel lblPrix = new JLabel("Prix :");
-										lblPrix.setBounds(460, 234, 32, 16);
-										ProposerTrajet.add(lblPrix);
-										
-										Prix = new JTextField();
-										Prix.setBounds(504, 229, 130, 26);
-										ProposerTrajet.add(Prix);
-										Prix.setColumns(10);
-										
-										JLabel lblVhicule = new JLabel("Véhicule");
-										lblVhicule.setBounds(214, 282, 53, 16);
-										ProposerTrajet.add(lblVhicule);
-										
-										JButton btnAjouterTrajet = new JButton("Ajouter");
-										btnAjouterTrajet.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												insererCovoiturage();
-											}
-										});
-										btnAjouterTrajet.setBounds(214, 341, 90, 29);
-										ProposerTrajet.add(btnAjouterTrajet);
-										
-										JButton btnAnnuler_2 = new JButton("Annuler");
-										btnAnnuler_2.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-											}
-										});
-										
-										//------------------------------Panel MesInformations-----------------------
-										MesTrajets = new JPanel();
-										MesTrajets.setBounds(6, 65, 749, 417);
-										MesTrajets.setBackground(Color.LIGHT_GRAY);
-										MesTrajets.setVisible(false);
-										MesTrajets.setLayout(null);
-										
-										JLabel lblMesTrajets = new JLabel("Trajet n°1");
-										lblMesTrajets.setBounds(340, 5, 69, 16);
-										MesTrajets.add(lblMesTrajets);
-										
-										JLabel lblCpVilleDpart_1 = new JLabel("CP ville départ :");
-										lblCpVilleDpart_1.setBounds(121, 55, 98, 16);
-										MesTrajets.add(lblCpVilleDpart_1);
-										
-										MesTrajetsCPVilleDepart = new JTextField();
-										MesTrajetsCPVilleDepart.setBounds(231, 49, 98, 28);
-										MesTrajets.add(MesTrajetsCPVilleDepart);
-										MesTrajetsCPVilleDepart.setColumns(10);
-										
-										JLabel lblCpVilleArrive = new JLabel("CP ville arrivée :");
-										lblCpVilleArrive.setBounds(113, 92, 106, 16);
-										MesTrajets.add(lblCpVilleArrive);
-										
-										MesTrajetsNomVilleDepart = new JTextField();
-										MesTrajetsNomVilleDepart.setBounds(466, 49, 134, 28);
-										MesTrajets.add(MesTrajetsNomVilleDepart);
-										MesTrajetsNomVilleDepart.setColumns(10);
-										
-										MesTrajetsCPVilleArrivee = new JTextField();
-										MesTrajetsCPVilleArrivee.setBounds(231, 89, 98, 28);
-										MesTrajets.add(MesTrajetsCPVilleArrivee);
-										MesTrajetsCPVilleArrivee.setColumns(10);
-										
-										JLabel lblNomVilleDpart_1 = new JLabel("Nom ville départ :");
-										lblNomVilleDpart_1.setBounds(348, 55, 121, 16);
-										MesTrajets.add(lblNomVilleDpart_1);
-										
-										JLabel lblNomVilleArrive_1 = new JLabel("Nom ville arrivée :");
-										lblNomVilleArrive_1.setBounds(348, 95, 121, 16);
-										MesTrajets.add(lblNomVilleArrive_1);
-										
-										MesTrajetsNomVilleArrivee = new JTextField();
-										MesTrajetsNomVilleArrivee.setBounds(466, 86, 134, 28);
-										MesTrajets.add(MesTrajetsNomVilleArrivee);
-										MesTrajetsNomVilleArrivee.setColumns(10);
-										
-										JLabel lblDateVoyae = new JLabel("Date voyage :");
-										lblDateVoyae.setBounds(132, 142, 98, 16);
-										MesTrajets.add(lblDateVoyae);
-										
-										MesTrajetsDateVoyage = new JTextField();
-										MesTrajetsDateVoyage.setBounds(231, 136, 107, 28);
-										MesTrajets.add(MesTrajetsDateVoyage);
-										MesTrajetsDateVoyage.setColumns(10);
-										
-										JLabel lblDistanceVoyage = new JLabel("Distance voyage :");
-										lblDistanceVoyage.setBounds(352, 142, 117, 16);
-										MesTrajets.add(lblDistanceVoyage);
-										
-										MesTrajetsDistanceVoyage = new JTextField();
-										MesTrajetsDistanceVoyage.setBounds(466, 136, 82, 28);
-										MesTrajets.add(MesTrajetsDistanceVoyage);
-										MesTrajetsDistanceVoyage.setColumns(10);
-										
-										JLabel lblNewLabel_8 = new JLabel("Places disponibles :");
-										lblNewLabel_8.setBounds(125, 178, 124, 16);
-										MesTrajets.add(lblNewLabel_8);
-										
-										MesTrajetsPlacesDispo = new JTextField();
-										MesTrajetsPlacesDispo.setBounds(256, 170, 82, 28);
-										MesTrajets.add(MesTrajetsPlacesDispo);
-										MesTrajetsPlacesDispo.setColumns(10);
-										
-										JLabel lblPrix_1 = new JLabel("Prix :");
-										lblPrix_1.setBounds(431, 178, 38, 16);
-										MesTrajets.add(lblPrix_1);
-										
-										MesTrajetsPrix = new JTextField();
-										MesTrajetsPrix.setBounds(466, 170, 74, 28);
-										MesTrajets.add(MesTrajetsPrix);
-										MesTrajetsPrix.setColumns(10);
-										
-										
-										JLabel lblVhicule_1 = new JLabel("Véhicule :");
-										lblVhicule_1.setBounds(180, 214, 69, 16);
-										MesTrajets.add(lblVhicule_1);
-										
-										comboBoxVehiculeTrajet = new JComboBox();
-										comboBoxVehiculeTrajet.setBounds(243, 210, 339, 27);
-										MesTrajets.add(comboBoxVehiculeTrajet);
-										
-										MesTrajetsSupprimer = new JButton("Supprimer");
-										MesTrajetsSupprimer.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												supprimerTrajet(trajetCourant);
-											}
-										});
-										MesTrajetsSupprimer.setBounds(113, 249, 117, 29);
-										MesTrajets.add(MesTrajetsSupprimer);
-										
-										MesTrajetsAnnuler = new JButton("Annuler");
-										MesTrajetsAnnuler.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												afficherTrajets(compteurTrajet);
-											}
-										});
-										MesTrajetsAnnuler.setBounds(276, 249, 117, 29);
-										MesTrajets.add(MesTrajetsAnnuler);
-										
-										MesTrajetsModifier = new JButton("Modifier");
-										MesTrajetsModifier.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												modifierTrajet(trajetCourant);
-											}
-										});
-										MesTrajetsModifier.setBounds(423, 249, 117, 29);
-										MesTrajets.add(MesTrajetsModifier);
-										
-										MesTrajetsPrecedent = new JButton("");
-										MesTrajetsPrecedent.setBorder(null);
-										MesTrajetsPrecedent.setBorderPainted(false);
-										MesTrajetsPrecedent.setIcon(new ImageIcon(main.class.getResource("/fenetres/precedent.png")));
-										MesTrajetsPrecedent.addActionListener(new ActionListener() {
+				JLabel lblMesInformations = new JLabel("Mes Informations");
+				lblMesInformations.setBounds(319, 5, 110, 16);
+				MesInformations.add(lblMesInformations);
+				
+				JLabel lblNewLabel = new JLabel("Pseudo :");
+				lblNewLabel.setBounds(208, 50, 57, 14);
+				MesInformations.add(lblNewLabel);
+				
+				MesInfosPseudo = new JTextField();
+				MesInfosPseudo.setBounds(319, 47, 123, 20);
+				MesInfosPseudo.setEnabled(false);
+				MesInformations.add(MesInfosPseudo);
+				MesInfosPseudo.setColumns(10);
+				
+				JLabel lblMotDePass = new JLabel("Mot de passe :");
+				lblMotDePass.setBounds(171, 75, 94, 14);
+				MesInformations.add(lblMotDePass);
+				
+				MesInfosMdp = new JTextField();
+				MesInfosMdp.setBounds(319, 72, 123, 20);
+				MesInformations.add(MesInfosMdp);
+				MesInfosMdp.setColumns(10);
+				
+				JLabel lblRpterMotDe = new JLabel("Répéter mot de passe :");
+				lblRpterMotDe.setBounds(120, 100, 145, 14);
+				MesInformations.add(lblRpterMotDe);
+				
+				MesInfosRepeterMdp = new JTextField();
+				MesInfosRepeterMdp.setBounds(319, 97, 123, 20);
+				MesInformations.add(MesInfosRepeterMdp);
+				MesInfosRepeterMdp.setColumns(10);
+				
+				JLabel lblNom = new JLabel("Nom :");
+				lblNom.setBounds(208, 154, 46, 14);
+				MesInformations.add(lblNom);
+				
+				MesInfosNom = new JTextField();
+				MesInfosNom.setBounds(319, 151, 123, 20);
+				MesInformations.add(MesInfosNom);
+				MesInfosNom.setColumns(10);
+				
+				JLabel lblPrenom = new JLabel("Prenom :");
+				lblPrenom.setBounds(197, 178, 68, 14);
+				MesInformations.add(lblPrenom);
+				
+				MesInfosPrenom = new JTextField();
+				MesInfosPrenom.setBounds(319, 175, 123, 20);
+				MesInformations.add(MesInfosPrenom);
+				MesInfosPrenom.setColumns(10);
+				
+				MesInfosDateNaissance = new JTextField();
+				MesInfosDateNaissance.setBounds(319, 200, 123, 20);
+				MesInformations.add(MesInfosDateNaissance);
+				MesInfosDateNaissance.setColumns(10);
+				
+				JLabel lblDateDeNaissance = new JLabel("Date de naissance :");
+				lblDateDeNaissance.setBounds(144, 203, 122, 14);
+				MesInformations.add(lblDateDeNaissance);
+				
+				JLabel lblAdresse = new JLabel("Adresse :");
+				lblAdresse.setBounds(17, 228, 68, 14);
+				MesInformations.add(lblAdresse);
+				
+				MesInfosAdresse = new JTextField();
+				MesInfosAdresse.setBounds(84, 225, 134, 20);
+				MesInformations.add(MesInfosAdresse);
+				MesInfosAdresse.setColumns(10);
+				
+				JLabel lblTlphone = new JLabel("T\u00E9l\u00E9phone :");
+				lblTlphone.setBounds(182, 253, 83, 14);
+				MesInformations.add(lblTlphone);
+				
+				MesInfosTelephone = new JTextField();
+				MesInfosTelephone.setBounds(319, 250, 123, 20);
+				MesInformations.add(MesInfosTelephone);
+				MesInfosTelephone.setColumns(10);
+				
+				JLabel lblMail = new JLabel("Mail :");
+				lblMail.setBounds(208, 278, 57, 14);
+				MesInformations.add(lblMail);
+				
+				MesInfosMail = new JTextField();
+				MesInfosMail.setBounds(318, 275, 124, 20);
+				MesInformations.add(MesInfosMail);
+				MesInfosMail.setColumns(10);
+				
+				JButton btnModifier_1 = new JButton("Modifier");
+				btnModifier_1.setBounds(144, 326, 89, 23);
+				btnModifier_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						modifierInformations();
+					}
+				});
+				MesInformations.add(btnModifier_1);
+				
+				JButton btnAnnuler_1 = new JButton("Annuler");
+				btnAnnuler_1.setBounds(290, 326, 89, 23);
+				btnAnnuler_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						afficherInformations();
+					}
+				});
+				MesInformations.add(btnAnnuler_1);
+				
+				JButton btnSuppimerLeCompte = new JButton("Suppimer le compte");
+				btnSuppimerLeCompte.setBounds(428, 326, 145, 23);
+				btnSuppimerLeCompte.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						supprimerInformations();
+					}
+				});
+				
+				RechercherTrajet = new JPanel();
+				RechercherTrajet.setBounds(6, 65, 737, 417);
+				RechercherTrajet.setVisible(false);
+				RechercherTrajet.setLayout(null);
+				
+				JLabel lblCpVilleDe = new JLabel("CP ville de départ :");
+				lblCpVilleDe.setBounds(68, 30, 117, 16);
+				RechercherTrajet.add(lblCpVilleDe);
+				
+				rechercherCPVilleDepart = new JTextField();
+				rechercherCPVilleDepart.setText("91890");
+				rechercherCPVilleDepart.setBounds(197, 25, 130, 26);
+				RechercherTrajet.add(rechercherCPVilleDepart);
+				rechercherCPVilleDepart.setColumns(10);
+				rechercherCPVilleDepart.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent arg0) {
+						Rechercher_dynamique_ville_depart_nom(rechercherCPVilleDepart.getText()+"%");
+					}
+				});
+				
+				JLabel lblNewLabel_9 = new JLabel("CP ville d'arrivée :");
+				lblNewLabel_9.setBounds(68, 78, 117, 16);
+				RechercherTrajet.add(lblNewLabel_9);
+				
+				rechercherCPVilleArrivee = new JTextField();
+				rechercherCPVilleArrivee.setText("91150");
+				rechercherCPVilleArrivee.setBounds(197, 73, 130, 26);
+				RechercherTrajet.add(rechercherCPVilleArrivee);
+				rechercherCPVilleArrivee.setColumns(10);
+				rechercherCPVilleArrivee.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent arg0) {
+						Rechercher_dynamique_ville_arrivee_nom(rechercherCPVilleArrivee.getText()+"%");
+					}
+				});
+				
+				JLabel lblVilleDarrive = new JLabel("Ville de départ :");
+				lblVilleDarrive.setBounds(376, 30, 101, 16);
+				RechercherTrajet.add(lblVilleDarrive);
+				
+				JLabel lblNewLabel_10 = new JLabel("Ville d'arrivée :");
+				lblNewLabel_10.setBounds(376, 78, 101, 16);
+				RechercherTrajet.add(lblNewLabel_10);
+				
+				rechercherNomVilleDepart = new JTextField();
+				rechercherNomVilleDepart.setBounds(489, 25, 130, 26);
+				RechercherTrajet.add(rechercherNomVilleDepart);
+				rechercherNomVilleDepart.setColumns(10);
+				
+				rechercherNomVilleDepart.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent arg0) {
+						Rechercher_dynamique_ville_depart_cp(rechercherNomVilleDepart.getText()+"%");
+					}
+				});
+				
+				rechercherNomVilleArrivee = new JTextField();
+				rechercherNomVilleArrivee.setBounds(489, 73, 130, 26);
+				RechercherTrajet.add(rechercherNomVilleArrivee);
+				rechercherNomVilleArrivee.setColumns(10);
+				rechercherNomVilleArrivee.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent arg0) {
+						Rechercher_dynamique_ville_arrivee_cp(rechercherNomVilleArrivee.getText()+"%");
+					}
+				});
+				
+				JLabel lblDate_1 = new JLabel("Date :");
+				lblDate_1.setBounds(283, 125, 44, 16);
+				RechercherTrajet.add(lblDate_1);
+				
+				rechercherDate = new JTextField();
+				rechercherDate.setText("12-12-2012");
+				rechercherDate.setBounds(336, 120, 130, 26);
+				RechercherTrajet.add(rechercherDate);
+				rechercherDate.setColumns(10);
+				
+				table_afficher_consult_cov = new JTable();
+				table_afficher_consult_cov.setBorder(new LineBorder(new Color(0, 0, 0)));
+				table_afficher_consult_cov.setModel(model_table_afficher_cov);
+				//table_afficher_consult_cov.setBounds(6, 199, 725, 116);
+				table_afficher_consult_cov.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent evt) {
+						int row = table_afficher_consult_cov.getSelectedRow();
+						if (SwingUtilities.isLeftMouseButton(evt)){
+							//Afficher les information du conducteur sur le covoiturage sélectionné
+							trajetChoisi = (Integer)table_afficher_consult_cov.getModel().getValueAt(row, 0);
+							AfficherInfoConducteur((Integer) table_afficher_consult_cov.getModel().getValueAt(row, 0));
+						}
+					}
+				});
+				//RechercherTrajet.add(table_afficher_consult_cov);
+				
+				
+				JButton btnRechercher = new JButton("Rechercher");
+				btnRechercher.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						rechercherTrajet();
+					}
+				});
+				
+				
+				ProposerTrajet = new JPanel();
+				ProposerTrajet.setBounds(6, 65, 737, 433);
+				ProposerTrajet.setVisible(false);
+				ProposerTrajet.setLayout(null);
+				
+					JLabel lblCpVilleDpart = new JLabel("CP Ville Départ :");
+					lblCpVilleDpart.setBounds(81, 94, 101, 16);
+					ProposerTrajet.add(lblCpVilleDpart);
+					
+					CPVilleDepart = new JTextField();
+					CPVilleDepart.setBounds(194, 89, 130, 26);
+					ProposerTrajet.add(CPVilleDepart);
+					CPVilleDepart.setColumns(10);
+					CPVilleDepart.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent arg0) {
+							Rechercher_dynamique_ville_depart_nom_proposer(CPVilleDepart.getText()+"%");
+						}
+					});
+					
+					JLabel lblNomVilleDpart = new JLabel("Nom Ville départ :");
+					lblNomVilleDpart.setBounds(379, 140, 113, 16);
+					ProposerTrajet.add(lblNomVilleDpart);
+					
+					NomVilleDepart = new JTextField();
+					NomVilleDepart.setBounds(504, 135, 130, 26);
+					ProposerTrajet.add(NomVilleDepart);
+					NomVilleDepart.setColumns(10);
+					NomVilleDepart.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent arg0) {
+							Rechercher_dynamique_ville_depart_cp_proposer(NomVilleDepart.getText()+"%");
+						}
+					});
+					
+					JLabel lblNewLabel_7 = new JLabel("CP Ville Arrivee :");
+					lblNewLabel_7.setBounds(389, 94, 103, 16);
+					ProposerTrajet.add(lblNewLabel_7);
+					
+					CPVilleArrivee = new JTextField();
+					CPVilleArrivee.setBounds(504, 89, 130, 26);
+					ProposerTrajet.add(CPVilleArrivee);
+					CPVilleArrivee.setColumns(10);
+					CPVilleArrivee.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent arg0) {
+							Rechercher_dynamique_ville_arrivee_nom_proposer(CPVilleArrivee.getText()+"%");
+						}
+					});
+					
+					JLabel lblNomVilleArrive = new JLabel("Nom Ville Arrivée :");
+					lblNomVilleArrive.setBounds(65, 140, 117, 16);
+					ProposerTrajet.add(lblNomVilleArrive);
+					
+					NomVilleArrivee = new JTextField();
+					NomVilleArrivee.setBounds(194, 135, 130, 26);
+					ProposerTrajet.add(NomVilleArrivee);
+					NomVilleArrivee.setColumns(10);
+					NomVilleArrivee.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent arg0) {
+							Rechercher_dynamique_ville_arrivee_cp_proposer(NomVilleArrivee.getText()+"%");
+						}
+					});
+					
+					JLabel lblDate = new JLabel("Date :");
+					lblDate.setBounds(145, 196, 37, 16);
+					ProposerTrajet.add(lblDate);
+					
+					DateVoyage = new JTextField();
+					DateVoyage.setBounds(194, 191, 130, 26);
+					ProposerTrajet.add(DateVoyage);
+					DateVoyage.setColumns(10);
+					
+					JLabel lblDistance = new JLabel("Distance :");
+					lblDistance.setBounds(429, 196, 63, 16);
+					ProposerTrajet.add(lblDistance);
+					
+					DistanceVoyage = new JTextField();
+					DistanceVoyage.setBounds(504, 191, 130, 26);
+					ProposerTrajet.add(DistanceVoyage);
+					DistanceVoyage.setColumns(10);
+					
+					JLabel lblPlacesDisponibles = new JLabel("Places disponibles :");
+					lblPlacesDisponibles.setBounds(58, 234, 124, 16);
+					ProposerTrajet.add(lblPlacesDisponibles);
+					
+					PlaceDispo = new JTextField();
+					PlaceDispo.setBounds(194, 229, 130, 26);
+					ProposerTrajet.add(PlaceDispo);
+					PlaceDispo.setColumns(10);
+					
+					JLabel lblPrix = new JLabel("Prix :");
+					lblPrix.setBounds(460, 234, 32, 16);
+					ProposerTrajet.add(lblPrix);
+					
+					Prix = new JTextField();
+					Prix.setBounds(504, 229, 130, 26);
+					ProposerTrajet.add(Prix);
+					Prix.setColumns(10);
+					
+					JLabel lblVhicule = new JLabel("Véhicule");
+					lblVhicule.setBounds(214, 282, 53, 16);
+					ProposerTrajet.add(lblVhicule);
+					
+					JButton btnAjouterTrajet = new JButton("Ajouter");
+					btnAjouterTrajet.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							insererCovoiturage();
+						}
+					});
+					btnAjouterTrajet.setBounds(214, 341, 90, 29);
+					ProposerTrajet.add(btnAjouterTrajet);
+					
+					JButton btnAnnuler_2 = new JButton("Annuler");
+					btnAnnuler_2.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+						}
+					});
+					
+					//------------------------------Panel MesInformations-----------------------
+					MesTrajets = new JPanel();
+					MesTrajets.setBounds(6, 65, 749, 417);
+					MesTrajets.setBackground(Color.LIGHT_GRAY);
+					MesTrajets.setVisible(false);
+					MesTrajets.setLayout(null);
+					
+					JLabel lblMesTrajets = new JLabel("Trajet n°1");
+					lblMesTrajets.setBounds(340, 5, 69, 16);
+					MesTrajets.add(lblMesTrajets);
+					
+					JLabel lblCpVilleDpart_1 = new JLabel("CP ville départ :");
+					lblCpVilleDpart_1.setBounds(121, 55, 98, 16);
+					MesTrajets.add(lblCpVilleDpart_1);
+					
+					MesTrajetsCPVilleDepart = new JTextField();
+					MesTrajetsCPVilleDepart.setBounds(231, 49, 98, 28);
+					MesTrajets.add(MesTrajetsCPVilleDepart);
+					MesTrajetsCPVilleDepart.setColumns(10);
+					
+					JLabel lblCpVilleArrive = new JLabel("CP ville arrivée :");
+					lblCpVilleArrive.setBounds(113, 92, 106, 16);
+					MesTrajets.add(lblCpVilleArrive);
+					
+					MesTrajetsNomVilleDepart = new JTextField();
+					MesTrajetsNomVilleDepart.setBounds(466, 49, 134, 28);
+					MesTrajets.add(MesTrajetsNomVilleDepart);
+					MesTrajetsNomVilleDepart.setColumns(10);
+					
+					MesTrajetsCPVilleArrivee = new JTextField();
+					MesTrajetsCPVilleArrivee.setBounds(231, 89, 98, 28);
+					MesTrajets.add(MesTrajetsCPVilleArrivee);
+					MesTrajetsCPVilleArrivee.setColumns(10);
+					
+					JLabel lblNomVilleDpart_1 = new JLabel("Nom ville départ :");
+					lblNomVilleDpart_1.setBounds(348, 55, 121, 16);
+					MesTrajets.add(lblNomVilleDpart_1);
+					
+					JLabel lblNomVilleArrive_1 = new JLabel("Nom ville arrivée :");
+					lblNomVilleArrive_1.setBounds(348, 95, 121, 16);
+					MesTrajets.add(lblNomVilleArrive_1);
+					
+					MesTrajetsNomVilleArrivee = new JTextField();
+					MesTrajetsNomVilleArrivee.setBounds(466, 86, 134, 28);
+					MesTrajets.add(MesTrajetsNomVilleArrivee);
+					MesTrajetsNomVilleArrivee.setColumns(10);
+					
+					JLabel lblDateVoyae = new JLabel("Date voyage :");
+					lblDateVoyae.setBounds(132, 142, 98, 16);
+					MesTrajets.add(lblDateVoyae);
+					
+					MesTrajetsDateVoyage = new JTextField();
+					MesTrajetsDateVoyage.setBounds(231, 136, 107, 28);
+					MesTrajets.add(MesTrajetsDateVoyage);
+					MesTrajetsDateVoyage.setColumns(10);
+					
+					JLabel lblDistanceVoyage = new JLabel("Distance voyage :");
+					lblDistanceVoyage.setBounds(352, 142, 117, 16);
+					MesTrajets.add(lblDistanceVoyage);
+					
+					MesTrajetsDistanceVoyage = new JTextField();
+					MesTrajetsDistanceVoyage.setBounds(466, 136, 82, 28);
+					MesTrajets.add(MesTrajetsDistanceVoyage);
+					MesTrajetsDistanceVoyage.setColumns(10);
+					
+					JLabel lblNewLabel_8 = new JLabel("Places disponibles :");
+					lblNewLabel_8.setBounds(125, 178, 124, 16);
+					MesTrajets.add(lblNewLabel_8);
+					
+					MesTrajetsPlacesDispo = new JTextField();
+					MesTrajetsPlacesDispo.setBounds(256, 170, 82, 28);
+					MesTrajets.add(MesTrajetsPlacesDispo);
+					MesTrajetsPlacesDispo.setColumns(10);
+					
+					JLabel lblPrix_1 = new JLabel("Prix :");
+					lblPrix_1.setBounds(431, 178, 38, 16);
+					MesTrajets.add(lblPrix_1);
+					
+					MesTrajetsPrix = new JTextField();
+					MesTrajetsPrix.setBounds(466, 170, 74, 28);
+					MesTrajets.add(MesTrajetsPrix);
+					MesTrajetsPrix.setColumns(10);
+					
+					
+					JLabel lblVhicule_1 = new JLabel("Véhicule :");
+					lblVhicule_1.setBounds(180, 214, 69, 16);
+					MesTrajets.add(lblVhicule_1);
+					
+					comboBoxVehiculeTrajet = new JComboBox();
+					comboBoxVehiculeTrajet.setBounds(243, 210, 339, 27);
+					MesTrajets.add(comboBoxVehiculeTrajet);
+					
+					MesTrajetsSupprimer = new JButton("Supprimer");
+					MesTrajetsSupprimer.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							supprimerTrajet(trajetCourant);
+						}
+					});
+					MesTrajetsSupprimer.setBounds(113, 249, 117, 29);
+					MesTrajets.add(MesTrajetsSupprimer);
+					
+					MesTrajetsAnnuler = new JButton("Annuler");
+					MesTrajetsAnnuler.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							afficherTrajets(compteurTrajet);
+						}
+					});
+					MesTrajetsAnnuler.setBounds(276, 249, 117, 29);
+					MesTrajets.add(MesTrajetsAnnuler);
+					
+					MesTrajetsModifier = new JButton("Modifier");
+					MesTrajetsModifier.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							modifierTrajet(trajetCourant);
+						}
+					});
+					MesTrajetsModifier.setBounds(423, 249, 117, 29);
+					MesTrajets.add(MesTrajetsModifier);
+					
+					MesTrajetsPrecedent = new JButton("");
+					MesTrajetsPrecedent.setBorder(null);
+					MesTrajetsPrecedent.setBorderPainted(false);
+					MesTrajetsPrecedent.setIcon(new ImageIcon(main.class.getResource("/fenetres/precedent.png")));
+					MesTrajetsPrecedent.addActionListener(new ActionListener() {
 
-											public void actionPerformed(ActionEvent e) {
-												int nbTrajet = compterCovoiturage();
-												compteurTrajet --;
-												//lblVehicules.setText("Véhicule n°" + compteurVehicule);
-												if (compteurTrajet > 0){
-													lblMesTrajets.setText("Trajet n°"+compteurTrajet);
-													afficherTrajets(compteurTrajet);
-													chargerTableMesTrajets();
-												}
-												else {
-													JOptionPane.showMessageDialog(null, "Il n'y a pas de trajet précédent");
-													compteurTrajet ++;
-													//lblVehicules.setText("Véhicule n°" + compteurVehicule);
-												}
-											}
-										});
-										MesTrajetsPrecedent.setBounds(16, 137, 117, 37);
-										MesTrajets.add(MesTrajetsPrecedent);
-										
-										JButton MesTrajetsSuivant = new JButton("");
-										MesTrajetsSuivant.setIcon(new ImageIcon(main.class.getResource("/fenetres/suivant.png")));
-										MesTrajetsSuivant.setBorderPainted(false);
-										MesTrajetsSuivant.setRolloverEnabled(true);
-										MesTrajetsSuivant.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							int nbTrajet = compterCovoiturage();
+							compteurTrajet --;
+							//lblVehicules.setText("Véhicule n°" + compteurVehicule);
+							if (compteurTrajet > 0){
+								lblMesTrajets.setText("Trajet n°"+compteurTrajet);
+								afficherTrajets(compteurTrajet);
+								chargerTableMesTrajets();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Il n'y a pas de trajet précédent");
+								compteurTrajet ++;
+								//lblVehicules.setText("Véhicule n°" + compteurVehicule);
+							}
+						}
+					});
+					MesTrajetsPrecedent.setBounds(16, 137, 117, 37);
+					MesTrajets.add(MesTrajetsPrecedent);
+					
+					JButton MesTrajetsSuivant = new JButton("");
+					MesTrajetsSuivant.setIcon(new ImageIcon(main.class.getResource("/fenetres/suivant.png")));
+					MesTrajetsSuivant.setBorderPainted(false);
+					MesTrajetsSuivant.setRolloverEnabled(true);
+					MesTrajetsSuivant.addActionListener(new ActionListener() {
 
-											public void actionPerformed(ActionEvent e) {
-												int nbTrajet = compterCovoiturage();
-												compteurTrajet ++;
-												//lblVehicules.setText("Véhicule n°" + compteurVehicule);
-												if (compteurTrajet <= nbTrajet){
-													lblMesTrajets.setText("Trajet n°"+compteurTrajet);
-													afficherTrajets(compteurTrajet);	
-													chargerTableMesTrajets();
-												}
-												else {
-													JOptionPane.showMessageDialog(null, "Il n'y a pas de trajet suivant");
-													compteurTrajet --;
-													//lblVehicules.setText("Véhicule n°" + compteurVehicule);
-												}
-											}
-										});
-										
-										Bienvenue.add(MesTrajets);
-										
-										MesTrajetsSuivant.setBounds(582, 137, 117, 37);
-										MesTrajets.add(MesTrajetsSuivant);
-										
-										
-										JScrollPane scrollPane_2 = new JScrollPane();
-										scrollPane_2.setBounds(6, 291, 725, 88);
-										MesTrajets.add(scrollPane_2);
-										
-										table_mesTrajets = new JTable();
-										table_mesTrajets.setBorder(new LineBorder(new Color(0, 0, 0)));
-										table_mesTrajets.setModel(model_table_trajet);
-										table_mesTrajets.setBounds(2, 288, 721, 104);
-										table_mesTrajets.addMouseListener(new MouseAdapter() {
-										
+						public void actionPerformed(ActionEvent e) {
+							int nbTrajet = compterCovoiturage();
+							compteurTrajet ++;
+							//lblVehicules.setText("Véhicule n°" + compteurVehicule);
+							if (compteurTrajet <= nbTrajet){
+								lblMesTrajets.setText("Trajet n°"+compteurTrajet);
+								afficherTrajets(compteurTrajet);	
+								chargerTableMesTrajets();
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "Il n'y a pas de trajet suivant");
+								compteurTrajet --;
+								//lblVehicules.setText("Véhicule n°" + compteurVehicule);
+							}
+						}
+					});
+					
+					Bienvenue.add(MesTrajets);
+					
+					MesTrajetsSuivant.setBounds(582, 137, 117, 37);
+					MesTrajets.add(MesTrajetsSuivant);
+					
+					
+					JScrollPane scrollPane_2 = new JScrollPane();
+					scrollPane_2.setBounds(6, 291, 725, 88);
+					MesTrajets.add(scrollPane_2);
+					
+					table_mesTrajets = new JTable();
+					table_mesTrajets.setBorder(new LineBorder(new Color(0, 0, 0)));
+					table_mesTrajets.setModel(model_table_trajet);
+					table_mesTrajets.setBounds(2, 288, 721, 104);
+					table_mesTrajets.addMouseListener(new MouseAdapter() {
+					
 
-											@Override
-											public void mouseClicked(MouseEvent evt) {
-												int row = table_mesTrajets.getSelectedRow();
-												int col = table_mesTrajets.getSelectedColumn();
+						@Override
+						public void mouseClicked(MouseEvent evt) {
+							int row = table_mesTrajets.getSelectedRow();
+							int col = table_mesTrajets.getSelectedColumn();
 
-												if (SwingUtilities.isLeftMouseButton(evt)){
-													//Afficher les information du conducteur sur le covoiturage sélectionné
-													boutonSupprimer.setVisible(true);
-													covoiturageChoisi = (Integer) table_mesTrajets.getModel().getValueAt(row, 0);
-													participantChoisi = (String)table_mesTrajets.getModel().getValueAt(row, 1);
-													System.out.println("hello"+ participantChoisi +" "+covoiturageChoisi);
-													if(col == 6){
-														
-														if (estAccepte(participantChoisi, covoiturageChoisi)){
-															setAccepte(false,participantChoisi, covoiturageChoisi);
-															ajouterPlace(covoiturageChoisi);
-														}
-														else{
-															setAccepte(true,participantChoisi, covoiturageChoisi);
-															retirerPlace(covoiturageChoisi);
-														}
-													}
-												}
-											}
-										});
-										scrollPane_2.setViewportView(table_mesTrajets);
-										
-										boutonSupprimer = new JButton("Supprimer");
-										boutonSupprimer.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												supprimerParticipation(covoiturageChoisi, participantChoisi);
-											}
-										});
-										boutonSupprimer.setBounds(313, 382, 117, 29);
-										boutonSupprimer.setVisible(false);
-										MesTrajets.add(boutonSupprimer);
-										
-										JLabel lblNewLabel_15 = new JLabel("");
-										lblNewLabel_15.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
-										lblNewLabel_15.setBounds(0, 0, 749, 417);
-										MesTrajets.add(lblNewLabel_15);
-										btnAnnuler_2.setBounds(399, 341, 93, 29);
-										ProposerTrajet.add(btnAnnuler_2);
-										
-										//MesTrajets.add(comboBoxVehicule);
-										Bienvenue.add(ProposerTrajet);
-										
-										comboBoxVehicule = new JComboBox();
-										comboBoxVehicule.setBounds(296, 278, 338, 27);
-										ProposerTrajet.add(comboBoxVehicule);
-										
-										JLabel lblNewLabel_16 = new JLabel("");
-										lblNewLabel_16.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
-										lblNewLabel_16.setBounds(0, 0, 748, 429);
-										ProposerTrajet.add(lblNewLabel_16);
-								
+							if (SwingUtilities.isLeftMouseButton(evt)){
+								//Afficher les information du conducteur sur le covoiturage sélectionné
+								boutonSupprimer.setVisible(true);
+								covoiturageChoisi = (Integer) table_mesTrajets.getModel().getValueAt(row, 0);
+								participantChoisi = (String)table_mesTrajets.getModel().getValueAt(row, 1);
+								System.out.println("hello"+ participantChoisi +" "+covoiturageChoisi);
+								if(col == 6){
 									
-									btnRechercher.setBounds(293, 158, 117, 29);
-									RechercherTrajet.add(btnRechercher);
-									Bienvenue.add(RechercherTrajet);
-									
-									infoUtilisateur = new JLabel("infoUtilisateur.setText(\"<html>Ce trajet vous est proposé par \"+prenom+\" \"+nom+ \" à bord de sa \"+categorie+ \" \"+marque+\" \"+ modele+\".</html>\")\n");
-									infoUtilisateur.setHorizontalAlignment(SwingConstants.CENTER);
-									infoUtilisateur.setFont(new Font("Apple Braille", Font.PLAIN, 14));
-									infoUtilisateur.setBounds(6, 327, 725, 46);
-									infoUtilisateur.setVisible(false);
-									RechercherTrajet.add(infoUtilisateur);
-									
-									btnParticiper = new JButton("Participer");
-									btnParticiper.addActionListener(new ActionListener() {
+									if (estAccepte(participantChoisi, covoiturageChoisi)){
+										setAccepte(false,participantChoisi, covoiturageChoisi);
+										ajouterPlace(covoiturageChoisi);
+									}
+									else{
+										setAccepte(true,participantChoisi, covoiturageChoisi);
+										retirerPlace(covoiturageChoisi);
+									}
+								}
+							}
+						}
+					});
+					scrollPane_2.setViewportView(table_mesTrajets);
+					
+					boutonSupprimer = new JButton("Supprimer");
+					boutonSupprimer.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							supprimerParticipation(covoiturageChoisi, participantChoisi);
+						}
+					});
+					boutonSupprimer.setBounds(313, 382, 117, 29);
+					boutonSupprimer.setVisible(false);
+					MesTrajets.add(boutonSupprimer);
+					
+					JLabel lblNewLabel_15 = new JLabel("");
+					lblNewLabel_15.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+					lblNewLabel_15.setBounds(0, 0, 749, 417);
+					MesTrajets.add(lblNewLabel_15);
+					btnAnnuler_2.setBounds(399, 341, 93, 29);
+					ProposerTrajet.add(btnAnnuler_2);
+					
+					//MesTrajets.add(comboBoxVehicule);
+					Bienvenue.add(ProposerTrajet);
+					
+					comboBoxVehicule = new JComboBox();
+					comboBoxVehicule.setBounds(296, 278, 338, 27);
+					ProposerTrajet.add(comboBoxVehicule);
+					
+					JLabel lblNewLabel_16 = new JLabel("");
+					lblNewLabel_16.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+					lblNewLabel_16.setBounds(0, 0, 748, 429);
+					ProposerTrajet.add(lblNewLabel_16);
+					
+						
+						btnRechercher.setBounds(293, 158, 117, 29);
+						RechercherTrajet.add(btnRechercher);
+						Bienvenue.add(RechercherTrajet);
+						
+						infoUtilisateur = new JLabel("infoUtilisateur.setText(\"<html>Ce trajet vous est proposé par \"+prenom+\" \"+nom+ \" à bord de sa \"+categorie+ \" \"+marque+\" \"+ modele+\".</html>\")\n");
+						infoUtilisateur.setHorizontalAlignment(SwingConstants.CENTER);
+						infoUtilisateur.setFont(new Font("Apple Braille", Font.PLAIN, 14));
+						infoUtilisateur.setBounds(6, 327, 725, 46);
+						infoUtilisateur.setVisible(false);
+						RechercherTrajet.add(infoUtilisateur);
+						
+						btnParticiper = new JButton("Participer");
+						btnParticiper.addActionListener(new ActionListener() {
 
-										public void actionPerformed(ActionEvent e) {
-											participer(trajetChoisi);
-										}
-									});
-									btnParticiper.setBounds(293, 385, 117, 29);
-									RechercherTrajet.add(btnParticiper);
-									
-									scrollPane_rechercherTrajet = new JScrollPane();
-									scrollPane_rechercherTrajet.setBounds(6, 199, 725, 116);
-									scrollPane_rechercherTrajet.setViewportView(table_afficher_consult_cov);
-									RechercherTrajet.add(scrollPane_rechercherTrajet);
-									
-									JLabel label_16 = new JLabel("");
-									label_16.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
-									label_16.setBounds(0, 0, 737, 428);
-									RechercherTrajet.add(label_16);
-								MesInformations.add(btnSuppimerLeCompte);
-								
-								JLabel lblCp_1 = new JLabel("CP :");
-								lblCp_1.setBounds(230, 227, 28, 16);
-								MesInformations.add(lblCp_1);
-								
-								MesInfosCP = new JTextField();
-								MesInfosCP.setBounds(270, 221, 83, 28);
-								MesInformations.add(MesInfosCP);
-								MesInfosCP.setColumns(10);
-								
-								JLabel lblVille_1 = new JLabel("Ville :");
-								lblVille_1.setBounds(381, 227, 35, 16);
-								MesInformations.add(lblVille_1);
-								
-								MesInfosVille = new JTextField();
-								MesInfosVille.setBounds(428, 221, 134, 28);
-								MesInformations.add(MesInfosVille);
-								MesInfosVille.setColumns(10);
-								Bienvenue.add(MesInformations);
-								
-								JLabel lblNewLabel_18 = new JLabel("");
-								lblNewLabel_18.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
-								lblNewLabel_18.setBounds(0, 0, 749, 417);
-								MesInformations.add(lblNewLabel_18);
-							btnActualiserPermis.setBounds(298, 341, 117, 29);
-							MesPermis.add(btnActualiserPermis);
-							Bienvenue.add(MesPermis);
-							
-							JLabel lblNewLabel_17 = new JLabel("");
-							lblNewLabel_17.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
-							lblNewLabel_17.setBounds(0, 0, 749, 417);
-							MesPermis.add(lblNewLabel_17);
-							
-							MesParticipations = new JPanel();
-							MesParticipations.setBounds(6, 65, 749, 417);
-							Bienvenue.add(MesParticipations);
-							MesParticipations.setLayout(null);
-							
-							JScrollPane scrollPane_1 = new JScrollPane();
-							scrollPane_1.setBackground(Color.GRAY);
-							scrollPane_1.setBounds(6, 58, 723, 212);
-							MesParticipations.add(scrollPane_1);
-							
+							public void actionPerformed(ActionEvent e) {
+								participer(trajetChoisi);
+							}
+						});
+						btnParticiper.setBounds(293, 385, 117, 29);
+						RechercherTrajet.add(btnParticiper);
+						
+						scrollPane_rechercherTrajet = new JScrollPane();
+						scrollPane_rechercherTrajet.setBounds(6, 199, 725, 116);
+						scrollPane_rechercherTrajet.setViewportView(table_afficher_consult_cov);
+						RechercherTrajet.add(scrollPane_rechercherTrajet);
+						
+						JLabel label_16 = new JLabel("");
+						label_16.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+						label_16.setBounds(0, 0, 737, 428);
+						RechercherTrajet.add(label_16);
+						MesInformations.add(btnSuppimerLeCompte);
+						
+						JLabel lblCp_1 = new JLabel("CP :");
+						lblCp_1.setBounds(230, 227, 28, 16);
+						MesInformations.add(lblCp_1);
+						
+						MesInfosCP = new JTextField();
+						MesInfosCP.setBounds(270, 221, 83, 28);
+						MesInformations.add(MesInfosCP);
+						MesInfosCP.setColumns(10);
+						
+						JLabel lblVille_1 = new JLabel("Ville :");
+						lblVille_1.setBounds(381, 227, 35, 16);
+						MesInformations.add(lblVille_1);
+						
+						MesInfosVille = new JTextField();
+						MesInfosVille.setBounds(428, 221, 134, 28);
+						MesInformations.add(MesInfosVille);
+						MesInfosVille.setColumns(10);
+						Bienvenue.add(MesInformations);
+						
+						JLabel lblNewLabel_18 = new JLabel("");
+						lblNewLabel_18.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+						lblNewLabel_18.setBounds(0, 0, 749, 417);
+						MesInformations.add(lblNewLabel_18);
+						btnActualiserPermis.setBounds(298, 341, 117, 29);
+						MesPermis.add(btnActualiserPermis);
+						Bienvenue.add(MesPermis);
+						
+						JLabel lblNewLabel_17 = new JLabel("");
+						lblNewLabel_17.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+						lblNewLabel_17.setBounds(0, 0, 749, 417);
+						MesPermis.add(lblNewLabel_17);
+						
+						MesParticipations = new JPanel();
+						MesParticipations.setBounds(6, 65, 749, 417);
+						Bienvenue.add(MesParticipations);
+						MesParticipations.setLayout(null);
+						
+						JScrollPane scrollPane_1 = new JScrollPane();
+						scrollPane_1.setBackground(Color.GRAY);
+						scrollPane_1.setBounds(6, 58, 723, 212);
+						MesParticipations.add(scrollPane_1);
+						
 					table_mesParticipations = new JTable(model_table_mesParticipations);
 					table_mesParticipations.setBounds(6, 58, 723, 212);
 					scrollPane_1.setViewportView(table_mesParticipations);
@@ -1311,14 +1314,14 @@ public class main<conn> extends JFrame {
 					label_17.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
 					label_17.setBounds(0, 0, 749, 417);
 					MesParticipations.add(label_17);
-						btnPrcdent.setBounds(58, 135, 117, 37);
-						MesVehicules.add(btnPrcdent);
-						Bienvenue.add(MesVehicules);
-						
-						JLabel label_15 = new JLabel("");
-						label_15.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
-						label_15.setBounds(0, 0, 749, 417);
-						MesVehicules.add(label_15);
+					btnPrcdent.setBounds(58, 135, 117, 37);
+					MesVehicules.add(btnPrcdent);
+					Bienvenue.add(MesVehicules);
+					
+					JLabel label_15 = new JLabel("");
+					label_15.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+					label_15.setBounds(0, 0, 749, 417);
+					MesVehicules.add(label_15);
 					
 					JLabel label_14 = new JLabel("");
 					label_14.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
@@ -1613,107 +1616,121 @@ public class main<conn> extends JFrame {
 		});
 		btnPrecedent.setBounds(22, 21, 117, 29);
 		Inscription.add(btnPrecedent);
+		
+		JLabel label_18 = new JLabel("");
+		label_18.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+		label_18.setBounds(0, 0, 761, 493);
+		Inscription.add(label_18);
 		Inscription.setVisible(false);
-				
-					
-				
-				//----------------------------------Panel Véhicule------------------------
-				
-				this.Vehicule = new JPanel();
-				Vehicule.setBounds(0, 0, 753, 483);
-				contentPane.add(Vehicule);
-				Vehicule.setLayout(null);
-				
+		
+			
+		
+		//----------------------------------Panel Véhicule------------------------
+		
+		this.Vehicule = new JPanel();
+		Vehicule.setBounds(0, 0, 753, 483);
+		contentPane.add(Vehicule);
+		Vehicule.setLayout(null);
+		
+		Vehicule.setVisible(false);
+		
+		JLabel lblVehicule = new JLabel("Vehicule");
+		lblVehicule.setBounds(298, 126, 61, 16);
+		Vehicule.add(lblVehicule);
+		
+		JLabel lblMarque = new JLabel("Marque");
+		lblMarque.setBounds(173, 172, 61, 16);
+		Vehicule.add(lblMarque);
+		JLabel lblNewLabel_4 = new JLabel("Modele");
+		lblNewLabel_4.setBounds(173, 203, 61, 16);
+		Vehicule.add(lblNewLabel_4);
+		JLabel lblAnnee_1 = new JLabel("Annee");
+		lblAnnee_1.setBounds(173, 231, 61, 16);
+		Vehicule.add(lblAnnee_1);
+		JLabel lblNewLabel_5 = new JLabel("Categorie");
+		lblNewLabel_5.setBounds(173, 259, 61, 16);
+		Vehicule.add(lblNewLabel_5);
+		JLabel lblMotorisation_1 = new JLabel("Motorisation");
+		lblMotorisation_1.setBounds(151, 287, 91, 16);
+		Vehicule.add(lblMotorisation_1);
+		JLabel lblNewLabel_6 = new JLabel("Puissance");
+		lblNewLabel_6.setBounds(173, 315, 83, 16);
+		Vehicule.add(lblNewLabel_6);
+		
+		marque = new JTextField();
+		marque.setText("renault");
+		marque.setBounds(275, 166, 134, 28);
+		Vehicule.add(marque);
+		marque.setColumns(10);
+		
+		modele = new JTextField();
+		modele.setText("megane");
+		modele.setBounds(275, 197, 134, 28);
+		Vehicule.add(modele);
+		modele.setColumns(10);
+		
+		annee = new JTextField();
+		annee.setText("1996");
+		annee.setBounds(275, 225, 134, 28);
+		Vehicule.add(annee);
+		annee.setColumns(10);
+		
+		categorie = new JTextField();
+		categorie.setText("berline");
+		categorie.setBounds(275, 253, 134, 28);
+		Vehicule.add(categorie);
+		categorie.setColumns(10);
+		
+		motorisation = new JTextField();
+		motorisation.setText("diesel");
+		motorisation.setBounds(275, 281, 134, 28);
+		Vehicule.add(motorisation);
+		motorisation.setColumns(10);
+		
+		puissance = new JTextField();
+		puissance.setText("65");
+		puissance.setBounds(275, 309, 134, 28);
+		Vehicule.add(puissance);
+		puissance.setColumns(10);
+		
+		//-----------------------------------------------------Enregistrer Véhicule base de données-----------------------
+		JButton enregistrer = new JButton("Enregistrer");
+		enregistrer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inscrireVehicule();
+				Accueil.setVisible(false);
 				Vehicule.setVisible(false);
-				
-				JLabel lblVehicule = new JLabel("Vehicule");
-				lblVehicule.setBounds(298, 126, 61, 16);
-				Vehicule.add(lblVehicule);
-				
-				JLabel lblMarque = new JLabel("Marque");
-				lblMarque.setBounds(173, 172, 61, 16);
-				Vehicule.add(lblMarque);
-				JLabel lblNewLabel_4 = new JLabel("Modele");
-				lblNewLabel_4.setBounds(173, 203, 61, 16);
-				Vehicule.add(lblNewLabel_4);
-				JLabel lblAnnee_1 = new JLabel("Annee");
-				lblAnnee_1.setBounds(173, 231, 61, 16);
-				Vehicule.add(lblAnnee_1);
-				JLabel lblNewLabel_5 = new JLabel("Categorie");
-				lblNewLabel_5.setBounds(173, 259, 61, 16);
-				Vehicule.add(lblNewLabel_5);
-				JLabel lblMotorisation_1 = new JLabel("Motorisation");
-				lblMotorisation_1.setBounds(151, 287, 91, 16);
-				Vehicule.add(lblMotorisation_1);
-				JLabel lblNewLabel_6 = new JLabel("Puissance");
-				lblNewLabel_6.setBounds(173, 315, 83, 16);
-				Vehicule.add(lblNewLabel_6);
-				
-				marque = new JTextField();
-				marque.setText("renault");
-				marque.setBounds(275, 166, 134, 28);
-				Vehicule.add(marque);
-				marque.setColumns(10);
-				
-				modele = new JTextField();
-				modele.setText("megane");
-				modele.setBounds(275, 197, 134, 28);
-				Vehicule.add(modele);
-				modele.setColumns(10);
-				
-				annee = new JTextField();
-				annee.setText("1996");
-				annee.setBounds(275, 225, 134, 28);
-				Vehicule.add(annee);
-				annee.setColumns(10);
-				
-				categorie = new JTextField();
-				categorie.setText("berline");
-				categorie.setBounds(275, 253, 134, 28);
-				Vehicule.add(categorie);
-				categorie.setColumns(10);
-				
-				motorisation = new JTextField();
-				motorisation.setText("diesel");
-				motorisation.setBounds(275, 281, 134, 28);
-				Vehicule.add(motorisation);
-				motorisation.setColumns(10);
-				
-				puissance = new JTextField();
-				puissance.setText("65");
-				puissance.setBounds(275, 309, 134, 28);
-				Vehicule.add(puissance);
-				puissance.setColumns(10);
-				
-				//-----------------------------------------------------Enregistrer Véhicule base de données-----------------------
-				JButton enregistrer = new JButton("Enregistrer");
-				enregistrer.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						inscrireVehicule();
-						Accueil.setVisible(false);
-						Vehicule.setVisible(false);
-						Inscription.setVisible(false);
-						afficherVehicule(1);
-						Bienvenue.setVisible(true);
-						labelUtilisateur.setText("connecté en tant que " + utilisateurCourant);
-					}
-				});
-				enregistrer.setBounds(204, 379, 117, 29);
-				Vehicule.add(enregistrer);
-				
-				JButton annuler = new JButton("Annuler");
-				annuler.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Accueil.setVisible(false);
-						Vehicule.setVisible(false);
-						Inscription.setVisible(false);
-						afficherVehicule(1);
-						Bienvenue.setVisible(true);
-						labelUtilisateur.setText("connecté en tant que " + utilisateurCourant);
-					}
-				});
-				annuler.setBounds(399, 379, 117, 29);
-				Vehicule.add(annuler);
+				Inscription.setVisible(false);
+				afficherVehicule(1);
+				Bienvenue.setVisible(true);
+				labelUtilisateur.setText("connecté en tant que " + utilisateurCourant);
+			}
+		});
+		enregistrer.setBounds(204, 379, 117, 29);
+		Vehicule.add(enregistrer);
+		
+		JButton annuler = new JButton("Annuler");
+		annuler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Accueil.setVisible(false);
+				Vehicule.setVisible(false);
+				Inscription.setVisible(false);
+				afficherVehicule(1);
+				Bienvenue.setVisible(true);
+				labelUtilisateur.setText("connecté en tant que " + utilisateurCourant);
+			}
+		});
+		annuler.setBounds(399, 379, 117, 29);
+		Vehicule.add(annuler);
+		
+		JLabel label_19 = new JLabel("");
+		label_19.setIcon(new ImageIcon(main.class.getResource("/fenetres/fond_metal.jpg")));
+		label_19.setBounds(0, 0, 763, 494);
+		Vehicule.add(label_19);
+		
+		JLabel label_20 = new JLabel("");
+		label_20.setBounds(6, 6, 61, 16);
+		Vehicule.add(label_20);
 		
 	}
 	
@@ -1911,7 +1928,7 @@ public class main<conn> extends JFrame {
 			pst = conn.prepareStatement(sql_insererCovoiturage);
 			pst.setString(1, CPVilleDepart.getText());
 			pst.setString(2, CPVilleArrivee.getText());
-			pst.setString(3, DateVoyage.getText()); //getDate ?
+			pst.setString(3, Date_Francais_Anglais(DateVoyage.getText())); //getDate ?
 			pst.setString(4, DistanceVoyage.getText());
 			pst.setString(5, PlaceDispo.getText());
 			pst.setString(6, Prix.getText());
@@ -2043,7 +2060,7 @@ public class main<conn> extends JFrame {
 					pst.setString(1, MesInfosRepeterMdp.getText());
 					pst.setString(2, MesInfosNom.getText());
 					pst.setString(3, MesInfosPrenom.getText());
-					pst.setString(4, MesInfosDateNaissance.getText());
+					pst.setString(4, Date_Francais_Anglais(MesInfosDateNaissance.getText()));
 					pst.setString(5, MesInfosAdresse.getText());
 					pst.setString(6, MesInfosCP.getText());
 					pst.setString(7, MesInfosVille.getText());
@@ -2214,7 +2231,7 @@ public class main<conn> extends JFrame {
 			MesInfosRepeterMdp.setText(rs.getString(2));
 			MesInfosNom.setText(rs.getString(3));
 			MesInfosPrenom.setText(rs.getString(4));
-			MesInfosDateNaissance.setText(rs.getString(5));
+			MesInfosDateNaissance.setText(Date_Anglais_Francais(rs.getString(5)));
 			MesInfosAdresse.setText(rs.getString(6));
 			MesInfosCP.setText(rs.getString(7));
 			MesInfosVille.setText(rs.getString(8));
@@ -2419,7 +2436,7 @@ public class main<conn> extends JFrame {
 			pst.setString(1, utilisateurCourant);
 			pst.setString(2, rechercherCPVilleDepart.getText());
 			pst.setString(3, rechercherCPVilleArrivee.getText());
-			pst.setString(4, rechercherDate.getText());
+			pst.setString(4, Date_Francais_Anglais(rechercherDate.getText()));
 			
 			rs=pst.executeQuery();
 			
@@ -2431,7 +2448,7 @@ public class main<conn> extends JFrame {
 				String depart =  convertirCP(rs.getString("CPVilleDepart"));
 				
 	        	model_table_afficher_cov.addRow(new Object[] {rs.getInt("NumCovoiturage"), "Départ : " + depart, "Arrivé : " + arrivee,
-	        			"Date : " + rs.getString("dateVoyage"), rs.getFloat("distance") + " km", rs.getInt("PlacesDispo") + " place(s)", rs.getFloat("prix") + "€"});
+	        			"Date : " + Date_Anglais_Francais(rs.getString("dateVoyage")), rs.getFloat("distance") + " km", rs.getInt("PlacesDispo") + " place(s)", rs.getFloat("prix") + "€"});
 	        	
 	        }
 			if (result == false){
@@ -2453,7 +2470,7 @@ public class main<conn> extends JFrame {
 			pst = conn.prepareStatement(sql_modifierTrajet);
 			pst.setString(1, MesTrajetsCPVilleDepart.getText());
 			pst.setString(2, MesTrajetsCPVilleArrivee.getText());
-			pst.setString(3, MesTrajetsDateVoyage.getText());
+			pst.setString(3, Date_Francais_Anglais(MesTrajetsDateVoyage.getText()));
 			pst.setString(4, MesTrajetsDistanceVoyage.getText());
 			pst.setString(5, MesTrajetsPlacesDispo.getText());
 			pst.setString(6, MesTrajetsPrix.getText());
@@ -2487,7 +2504,6 @@ public class main<conn> extends JFrame {
 				try{
 					ProposerTrajet.setVisible(false);
 					MesParticipations.setVisible(false);
-
 					RechercherTrajet.setVisible(false);
 					MesPermis.setVisible(false);
 					MesTrajets.setVisible(true);
@@ -2502,11 +2518,14 @@ public class main<conn> extends JFrame {
 					trajetCourant = rs.getInt(1);
 					MesTrajetsCPVilleDepart.setText(rs.getString(2));
 					MesTrajetsCPVilleArrivee.setText(rs.getString(3));
-					MesTrajetsDateVoyage.setText(rs.getString(4));
+					MesTrajetsDateVoyage.setText(Date_Anglais_Francais(rs.getString(4)));
 					MesTrajetsDistanceVoyage.setText(rs.getString(5));
 					MesTrajetsPlacesDispo.setText(rs.getString(6));
 					MesTrajetsPrix.setText(rs.getString(7));
 					afficherVehiculeTrajet(rs.getInt(8));
+					
+					afficherVilleArrivee_MesTrajets();
+					afficherVilleDepart_MesTrajets();
 				 
 				}
 				catch(SQLException e1){
@@ -2532,6 +2551,35 @@ public class main<conn> extends JFrame {
 		}
 	}
 	
+	public void afficherVilleDepart_MesTrajets(){
+		String sql_afficherVille=("Select nomville from ville where CPville = ?");
+		System.out.println("hello");
+		try{
+			pst = conn.prepareStatement(sql_afficherVille);
+			pst.setString(1,MesTrajetsCPVilleDepart.getText());
+			ResultSet res = pst.executeQuery();
+			res.next();
+			MesTrajetsNomVilleDepart.setText(res.getString("nomville"));
+		}
+		catch(Exception e){
+			System.out.println("catch");
+		}
+	}
+	
+	public void afficherVilleArrivee_MesTrajets(){
+		String sql_afficherVille=("Select nomville from ville where CPville = ?");
+		
+		try{
+			pst = conn.prepareStatement(sql_afficherVille);
+			pst.setString(1,MesTrajetsCPVilleArrivee.getText());
+			ResultSet res = pst.executeQuery();
+			res.next();
+			MesTrajetsNomVilleArrivee.setText(res.getString(1));
+		}
+		catch(Exception e){
+			
+		}
+	}
 	public void afficherVehiculeTrajet(int numVehicule){
 		String sql_afficherVehicule = ("SELECT marque, modele, annee, categorie, motorisation, puissance from vehicule  WHERE identifiant = ? and numvehicule = ?");
 		
@@ -2743,8 +2791,6 @@ public class main<conn> extends JFrame {
 		}
 	}
 	
-	
-	
 	private void AfficherInfoConducteur(int numTrajet) {
 		// TODO Auto-generated method stub	
 		String sql_afficherInfoConducteur = ("Select prenom, nom, cpvilledepart, cpvillearrivee, marque, modele, placesdispo, categorie, prix FROM covoiturage, vehicule, utilisateur,ville where covoiturage.identifiant = utilisateur.identifiant and vehicule.identifiant = utilisateur.identifiant and numCovoiturage = ? ");
@@ -2791,8 +2837,6 @@ public class main<conn> extends JFrame {
  		}
  		else 
  			System.out.println("else");
-		
-    	
 	} 	
 	
 	private void retirerPlace(int numTrajet){
@@ -2818,10 +2862,6 @@ public class main<conn> extends JFrame {
 		catch(Exception e){
 			
 		}
-	}
-	
-	private void retirerParticipation(){
-		
 	}
 	
 	private void chargerTableMesTrajets(){
@@ -2931,7 +2971,7 @@ public class main<conn> extends JFrame {
 			boolean result = false;
 			while(rs.next()){
 				result = true;
-	        	model_table_mesParticipations.addRow(new Object[] {rs.getInt("num_covoiturage"),rs.getString("identifiant"),rs.getString("cpvilledepart"),rs.getString("cpvillearrivee"), rs.getString("dateVoyage"), rs.getInt("prix"), rs.getString("accepte")});
+	        	model_table_mesParticipations.addRow(new Object[] {rs.getInt("num_covoiturage"),rs.getString("identifiant"),rs.getString("cpvilledepart"),rs.getString("cpvillearrivee"), Date_Anglais_Francais(rs.getString("dateVoyage")), rs.getInt("prix"), rs.getString("accepte")});
 	        }	
 		}
 		catch(Exception e){
@@ -3019,4 +3059,37 @@ public class main<conn> extends JFrame {
 		return false;
 
 	}
+	
+	//Convertire date : yyyy-mm-dd en format dd-mm-yyyy -----------------------------------------------------------------------------------------------
+	 public final String Date_Anglais_Francais(String date_en_anglais){
+        String dateStr = date_en_anglais;
+        try{
+        DateFormat srcDf = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = srcDf.parse(dateStr);
+        
+        DateFormat destDf = new SimpleDateFormat("dd-MM-yyyy");
+        dateStr = destDf.format(date);
+        
+        }
+        catch (ParseException e) {
+             e.printStackTrace();
+        }  
+        return dateStr;
+	 }
+	//Convertire date : dd-mm-yyyy en format yyyy_mm_dd -----------------------------------------------------------------------------------------------
+	 public final String Date_Francais_Anglais(String date_en_francais){
+        String dateStr = date_en_francais;
+        try{
+        DateFormat srcDf = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date date = srcDf.parse(dateStr);
+        
+        DateFormat destDf = new SimpleDateFormat("yyyy-MM-dd");
+        dateStr = destDf.format(date);
+        
+        }
+        catch (ParseException e) {
+             e.printStackTrace();
+        }  
+        return dateStr;
+    }
 }
